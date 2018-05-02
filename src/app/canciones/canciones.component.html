@@ -1,0 +1,33 @@
+<h1 class="text-center">
+
+    Formulario Opciones</h1>
+<div class="form-group form-inline d-flex justify-content-center align-items-center">
+    <input [(ngModel)]="nombreCancion" name="nombreCancion" type="text"  class="form-control">
+    <button (click)="nuevaCancion($event)"  class="btn btn-primary form-control">Crear</button>
+    <p class="text-danger">Escribe el nombre</p>
+</div>
+
+{{nombreCancion}}
+<h1 class="text-center">Listado Canciones</h1>
+
+<div class="jumbotron">
+    <p *ngIf="canciones.length == 0">Todavía no existen canciones</p>
+
+    <!-- {{canciones | json}} -->
+
+    <ul class="list-group">
+        <li *ngFor="let cancion of canciones; let i = index" class="list-group-item d-flex justify-content-between align-items-center">
+            <span class="badge badge-primary badge-pill">
+                {{cancion.id}}
+            </span>
+            <span>
+                <input type="text" [(ngModel)]="cancion.nombre" (focusout)="modificar(i)">
+            </span>
+            <span (click)="eliminar(cancion.id)" class="badge badge-danger badge-pill">
+                Eliminar
+            </span>
+        </li>
+
+    </ul>
+
+</div>
